@@ -1,6 +1,6 @@
 import { Constants, useMeeting } from "@videosdk.live/react-sdk";
 import { HLS_CONFIG } from "./data";
-import { IconButton } from "@chakra-ui/react";
+import { IconButton, Spinner } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMicrophone,
@@ -13,7 +13,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const isHlsPlaying = (state) => {
-  return state === Constants.hlsEvents.HLS_STARTED;
+  return (
+    state === Constants.hlsEvents.HLS_STARTED ||
+    state === Constants.hlsEvents.HLS_PLAYABLE
+  );
+};
+
+const isHlsGoingToPlayOrStopping = (state) => {
+  return (
+    state === Constants.hlsEvents.HLS_STARTING ||
+    state === Constants.hlsEvents.HLS_STOPPING
+  );
 };
 
 const Controls = () => {
@@ -27,6 +37,8 @@ const Controls = () => {
     localMicOn,
     localWebcamOn,
   } = useMeeting();
+
+  console.log(hlsState);
 
   return (
     <div className="w-[80%] flex text-white justify-between items-center">
@@ -56,11 +68,15 @@ const Controls = () => {
       </div>
       <IconButton
         icon={
-          <FontAwesomeIcon icon={isHlsPlaying(hlsState) ? faPause : faPlay} />
+          isHlsGoingToPlayOrStopping(hlsState) ? (
+            <Spinner />
+          ) : (
+            <FontAwesomeIcon icon={isHlsPlaying(hlsState) ? faPause : faPlay} />
+          )
         }
         colorScheme={isHlsPlaying(hlsState) ? "red" : "gray"}
         onClick={() =>
-          isHlsPlaying(hlsState) ? startHls(HLS_CONFIG) : stopHls()
+          !isHlsPlaying(hlsState) ? startHls(HLS_CONFIG) : stopHls()
         }
       />
     </div>

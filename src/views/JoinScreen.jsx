@@ -4,7 +4,7 @@ const JoinScreen = ({ hostAStream, joinAsAHost, joinAsAViewer }) => {
   const [meetingId, setMeetingId] = useState("");
 
   return (
-    <div className="py-[20px] px-[30px] flex flex-col gap-[30px] lg:px-[50px]">
+    <div className="max-w-[80%] m-auto py-[20px] px-[30px] flex flex-col gap-[30px] lg:px-[50px]">
       <h1 className="text-3xl font-bold mb-5 ">
         Welcome to Streami, Hop in to an existing stream or create your own !{" "}
       </h1>
@@ -57,7 +57,7 @@ const JoinScreen = ({ hostAStream, joinAsAHost, joinAsAViewer }) => {
           e.preventDefault();
           hostAStream();
         }}
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="text-white max-w-fit bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         Host a Stream
       </button>

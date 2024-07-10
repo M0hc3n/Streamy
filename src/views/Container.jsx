@@ -2,6 +2,7 @@ import { Constants, useMeeting } from "@videosdk.live/react-sdk";
 import { useEffect, useRef, useState } from "react";
 import Speaker from "./Speaker";
 import Viewer from "./Viewer";
+import CallToJoinScreen from "./CallToJoinScreen";
 
 const Container = ({ onMeetingLeft, meetingId }) => {
   const [joined, setJoined] = useState(null);
@@ -15,6 +16,7 @@ const Container = ({ onMeetingLeft, meetingId }) => {
       onMeetingLeft();
     },
     onError: (e) => {
+      console.error(e);
       alert(e.message);
     },
   });
@@ -47,7 +49,7 @@ const Container = ({ onMeetingLeft, meetingId }) => {
         ) : joined && joined == "JOINING" ? (
           <p>Joining the meeting...</p>
         ) : (
-          <button onClick={joinMeet}>Join</button>
+          <CallToJoinScreen onClick={joinMeet} meetingI={meetingId}  />
         )}
       </h1>
     </div>
