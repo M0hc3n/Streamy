@@ -49,7 +49,7 @@ const Container = ({ onMeetingLeft, meetingId }) => {
         ) : joined && joined == "JOINING" ? (
           <p>Joining the meeting...</p>
         ) : (
-          <CallToJoinScreen onClick={joinMeet} meetingI={meetingId}  />
+          <CallToJoinScreen onClick={joinMeet} meetingI={meetingId} />
         )}
       </h1>
     </div>
