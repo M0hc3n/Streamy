@@ -41,7 +41,7 @@ const Controls = () => {
   console.log(hlsState);
 
   return (
-    <div className="w-[80%] flex text-white justify-between items-center">
+    <div className="w-[80%] lg:w-[50%] flex text-white justify-between items-center">
       <div className="flex gap-[15px]">
         <IconButton
           icon={<FontAwesomeIcon icon={faRightFromBracket} />}

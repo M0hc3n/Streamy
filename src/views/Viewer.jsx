@@ -1,6 +1,7 @@
 import { useMeeting } from "@videosdk.live/react-sdk";
 import Hls from "hls.js";
 import { useEffect, useRef } from "react";
+import StreamEndedOrPausedViewer from "./StreamEndedOrPausedViewer";
 
 const ViewerView = () => {
   // States to store downstream url and current HLS state
@@ -31,13 +32,12 @@ const ViewerView = () => {
     <div>
       {/* Showing message if HLS is not started or is stopped by HOST */}
       {hlsState != "HLS_PLAYABLE" ? (
-        <div>
-          <p>HLS has not started yet or is stopped</p>
-        </div>
+        <StreamEndedOrPausedViewer />
       ) : (
         hlsState == "HLS_PLAYABLE" && (
-          <div>
+          <div className="relative w-[80%] flex justify-center items-center lg:h-screen lg:w-[50%] mx-auto bg-[#11131A] overflow-hidden ">
             <video
+              className="max-h-[500px] m-auto border-[4px] border-blue-700 rounded-xl "
               ref={playerRef}
               id="hlsPlayer"
               autoPlay={true}

@@ -21,16 +21,41 @@ const Speaker = () => {
   }, [participants]);
 
   return (
-    <section className="w-full lg:h-screen bg-black py-[20px] px-[30px] flex flex-col ">
+    <section className="w-full bg-black py-[20px] px-[30px] flex flex-col gap-[30px]">
       <div className="w-full items-center flex flex-col gap-[10px] ">
         <LocalParticipant participant={local} />
         <Controls />
       </div>
 
-
-      {/* {speakers.map((participant) => (
-        <ParticipantView participantId={participant.id} key={participant.id} />
-      ))} */}
+      <div className="w-full flex flex-wrap gap-[30px] mb-[30px] ">
+        {speakers.map((participant) => (
+          <ParticipantView
+            participantId={participant.id}
+            key={participant.id}
+          />
+        ))}{speakers.map((participant) => (
+          <ParticipantView
+            participantId={participant.id}
+            key={participant.id}
+          />
+        ))}{speakers.map((participant) => (
+          <ParticipantView
+            participantId={participant.id}
+            key={participant.id}
+          />
+        ))}{speakers.map((participant) => (
+          <ParticipantView
+            participantId={participant.id}
+            key={participant.id}
+          />
+        ))}{speakers.map((participant) => (
+          <ParticipantView
+            participantId={participant.id}
+            key={participant.id}
+          />
+        ))}
+      </div>
+      {speakers.length === 0 && <div className="h-[170px] bg-black "></div>}
     </section>
   );
 };

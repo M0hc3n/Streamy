@@ -37,9 +37,8 @@ const Container = ({ onMeetingLeft, meetingId }) => {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold flex flex-col gap-[20px] ">
-        {/* Meeting ID: {meetingId} */}
+    <div className="h-[100%] bg-[#11131A]">
+      <div className="text-3xl font-bold flex flex-col gap-[20px] ">
         {joined && joined == "JOINED" ? (
           mMeeting.localParticipant.mode === Constants.modes.CONFERENCE ? (
             <Speaker />
@@ -49,9 +48,9 @@ const Container = ({ onMeetingLeft, meetingId }) => {
         ) : joined && joined == "JOINING" ? (
           <p>Joining the meeting...</p>
         ) : (
-          <CallToJoinScreen onClick={joinMeet} meetingI={meetingId} />
+          <CallToJoinScreen onClick={joinMeet} meetingId={meetingId} />
         )}
-      </h1>
+      </div>
     </div>
   );
 };

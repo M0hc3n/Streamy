@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useCreateMeeting from "./hooks/useCreateMeeting";
 import { MeetingConsumer, MeetingProvider } from "@videosdk.live/react-sdk";
 import { apiToken } from "./api";
 import JoinScreen from "./views/JoinScreen";
 import Container from "./views/Container";
+import { UserContext } from "./context/UserInfo";
 
 const App = () => {
   const { meetingId, setMeetingId, post } = useCreateMeeting();
   const [mode, setMode] = useState("CONFERENCE");
 
   const onMeetingLeft = () => setMeetingId(null);
+
+  const { user } = useContext(UserContext);
 
   const join = async (givenMeetingId) => {
     if (!givenMeetingId) {
@@ -45,7 +48,7 @@ const App = () => {
         meetingId,
         micEnabled: true,
         webcamEnabled: true,
-        name: "Chwippess",
+        name: user.displayName,
         mode,
       }}
       token={apiToken}

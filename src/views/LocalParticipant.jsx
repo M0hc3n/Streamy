@@ -1,8 +1,8 @@
 import { useParticipant } from "@videosdk.live/react-sdk";
 import { useEffect, useMemo, useRef } from "react";
-import ReactPlayer from "react-player";
 
-import classes from "../styles/local.module.css";
+import noCamView from "../assets/no cam view.png";
+import CustomPlayer from "../components/CustomPlayer";
 
 const LocalParticipant = ({ participant }) => {
   const { displayName, webcamStream, micStream, webcamOn, micOn, isLocal } =
@@ -32,30 +32,16 @@ const LocalParticipant = ({ participant }) => {
     }
   }, [micOn, micStream]);
 
-  console.log(classes);
   return (
     <div className="w-full">
-      {/* <p>
-        Participant: {displayName} | Webcam: {webcamOn ? "ON" : "OFF"} | Mic:{" "}
-        {micOn ? "ON" : "OFF"}
-      </p> */}
       <audio ref={MicRef} autoPlay muted={isLocal} />
-      {webcamOn && (
-        <div className=" w-[80%] mx-auto bg-[#11131A] rounded-xl overflow-hidden border-[4px] border-blue-700 ">
-          <ReactPlayer
-            playsinline // extremely crucial prop
-            pip={false}
-            light={false}
-            controls={false}
-            muted={true}
-            playing={true}
-            url={videoStream}
-            height={"100%"}
-            width={"100%"}
-            onError={(err) => {
-              console.log(err, "participant video error");
-            }}
-          />
+      {webcamOn ? (
+        <div className="relative w-[80%] lg:w-[50%] mx-auto bg-[#11131A] rounded-xl overflow-hidden border-[4px] border-blue-700 ">
+          <CustomPlayer videoStream={videoStream} displayName={displayName} />
+        </div>
+      ) : (
+        <div className="relative w-[50%] mx-auto bg-[#11131A] rounded-xl overflow-hidden border-[4px] border-blue-700 ">
+          <img src={noCamView} alt="" />
         </div>
       )}
     </div>
