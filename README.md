@@ -27,7 +27,7 @@ The viewer view is basic, he would only need to watch the stream
 ```cd Streamy``` <br>
 ```npm install``` <br>
 ```npm run dev``` <br>
-- Make sure to change the **apiToken** to your token (from Video SDK Dashboard)
+- Make sure to change the **apiToken** in ```/src/api/index.js``` to your token (from Video SDK Dashboard)
 
 
 #### Future:
